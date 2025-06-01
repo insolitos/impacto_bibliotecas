@@ -113,12 +113,12 @@ const dashboardData = {
     }
   ],
   timeline_atividades: [
-    {"mes": "Janeiro", "atividade": "Arranque do ano letivo - Planos de leitura"},
+    {"mes": "Setembro", "atividade": "Arranque do ano letivo - Planos de leitura"},
     {"mes": "Março", "atividade": "Semana da Leitura"},
     {"mes": "Abril", "atividade": "Dia Mundial do Livro"},
-    {"mes": "Maio", "atividade": "Concurso Nacional de Leitura - Fase Nacional"},
+    {"mes": "Maio", "atividade": "Concurso Nacional de Leitura - Fase Nacional -concurso extinto pelo PNL2027"},
     {"mes": "Outubro", "atividade": "Mês Internacional da Biblioteca Escolar"},
-    {"mes": "Dezembro", "atividade": "Avaliação anual das bibliotecas escolares"}
+    {"mes": "Julho", "atividade": "Avaliação anual das bibliotecas escolares"}
   ],
   impacto_educacional: {
     "percentagem_alunos_nivel_2_leitura": 76.9,
