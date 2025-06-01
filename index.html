@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard: Impacto das Bibliotecas Escolares na Promoção da Leitura em Portugal</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <div class="header__logo">
+                    <div class="logo-icon">📚</div>
+                    <div class="header__text">
+                        <h1 class="header__title">Dashboard: Impacto das Bibliotecas Escolares</h1>
+                        <p class="header__subtitle">Promoção da Leitura em Portugal</p>
+                    </div>
+                </div>
+                <div class="header__actions">
+                    <button class="btn btn--outline btn--sm" id="exportBtn">
+                        📊 Exportar Dados
+                    </button>
+                    <button class="btn btn--outline btn--sm" id="themeToggle">
+                        🌙 Modo Escuro
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav__tabs">
+                <button class="nav__tab nav__tab--active" data-tab="visao-geral">Visão Geral</button>
+                <button class="nav__tab" data-tab="analise-regional">Análise Regional</button>
+                <button class="nav__tab" data-tab="impacto-educacional">Impacto Educacional</button>
+                <button class="nav__tab" data-tab="programas">Programas e Iniciativas</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Seção 1: Visão Geral -->
+            <section id="visao-geral" class="section section--active">
+                <div class="section__header">
+                    <h2>Visão Geral</h2>
+                    <p>Panorama geral das bibliotecas escolares em Portugal</p>
+                </div>
+
+                <!-- Cards de Estatísticas -->
+                <div class="stats-grid">
+                    <div class="card stat-card">
+                        <div class="stat-card__icon">📚</div>
+                        <div class="stat-card__content">
+                            <h3 class="stat-card__number">2,524</h3>
+                            <p class="stat-card__label">Total de Bibliotecas</p>
+                        </div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat-card__icon">🗺️</div>
+                        <div class="stat-card__content">
+                            <h3 class="stat-card__number">7</h3>
+                            <p class="stat-card__label">Regiões Cobertas</p>
+                        </div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat-card__icon">👥</div>
+                        <div class="stat-card__content">
+                            <h3 class="stat-card__number">1.2M</h3>
+                            <p class="stat-card__label">Alunos Beneficiados</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gráficos da Visão Geral -->
+                <div class="charts-grid">
+                    <div class="card chart-card">
+                        <div class="chart-card__header">
+                            <h3>Distribuição de Bibliotecas por Distrito</h3>
+                        </div>
+                        <div class="chart-card__body">
+                            <img src="https://pplx-res.cloudinary.com/image/upload/v1748787348/pplx_code_interpreter/0b7ba664_kijody.jpg" alt="Distribuição de bibliotecas por distrito" class="chart-image">
+                        </div>
+                    </div>
+                    <div class="card chart-card">
+                        <div class="chart-card__header">
+                            <h3>Mapa Interativo de Portugal</h3>
+                        </div>
+                        <div class="chart-card__body">
+                            <div class="map-container" id="portugalMap">
+                                <div class="map-regions">
+                                    <div class="map-region" data-region="Norte" style="background-color: #1FB8CD;">Norte (903)</div>
+                                    <div class="map-region" data-region="Centro" style="background-color: #FFC185;">Centro (621)</div>
+                                    <div class="map-region" data-region="AML" style="background-color: #B4413C;">A.M. Lisboa (605)</div>
+                                    <div class="map-region" data-region="Alentejo" style="background-color: #ECEBD5;">Alentejo (255)</div>
+                                    <div class="map-region" data-region="Algarve" style="background-color: #5D878F;">Algarve (140)</div>
+                                    <div class="map-region" data-region="Madeira" style="background-color: #DB4545;">Madeira (50)</div>
+                                    <div class="map-region" data-region="Açores" style="background-color: #D2BA4C;">Açores (25)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção 2: Análise Regional -->
+            <section id="analise-regional" class="section">
+                <div class="section__header">
+                    <h2>Análise Regional (NUTS II)</h2>
+                    <p>Comparação detalhada entre regiões portuguesas</p>
+                </div>
+
+                <!-- Filtros -->
+                <div class="filters">
+                    <div class="form-group">
+                        <label class="form-label" for="regionSelect">Selecionar Região:</label>
+                        <select class="form-control" id="regionSelect">
+                            <option value="">Todas as Regiões</option>
+                            <option value="Norte">Norte</option>
+                            <option value="Centro">Centro</option>
+                            <option value="Área Metropolitana de Lisboa">Área Metropolitana de Lisboa</option>
+                            <option value="Alentejo">Alentejo</option>
+                            <option value="Algarve">Algarve</option>
+                            <option value="Madeira">Madeira</option>
+                            <option value="Açores">Açores</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="charts-grid">
+                    <div class="card chart-card">
+                        <div class="chart-card__header">
+                            <h3>Distribuição Regional das Bibliotecas</h3>
+                        </div>
+                        <div class="chart-card__body">
+                            <img src="https://pplx-res.cloudinary.com/image/upload/v1748787519/pplx_code_interpreter/150a9bf1_r2zotv.jpg" alt="Distribuição regional das bibliotecas" class="chart-image">
+                        </div>
+                    </div>
+                    <div class="card chart-card">
+                        <div class="chart-card__header">
+                            <h3>Correlação Bibliotecas vs PISA Leitura</h3>
+                        </div>
+                        <div class="chart-card__body">
+                            <img src="https://pplx-res.cloudinary.com/image/upload/v1748787440/pplx_code_interpreter/2349f574_phflmw.jpg" alt="Correlação bibliotecas vs PISA" class="chart-image">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabela Comparativa -->
+                <div class="card">
+                    <div class="card__body">
+                        <h3>Tabela Comparativa Regional</h3>
+                        <div class="table-container">
+                            <table class="comparison-table" id="comparisonTable">
+                                <thead>
+                                    <tr>
+                                        <th>Região</th>
+                                        <th>Bibliotecas</th>
+                                        <th>PISA Leitura</th>
+                                        <th>PIB per capita</th>
+                                        <th>População</th>
+                                        <th>Avaliação BE</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableBody">
+                                    <!-- Populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção 3: Impacto Educacional -->
+            <section id="impacto-educacional" class="section">
+                <div class="section__header">
+                    <h2>Impacto Educacional</h2>
+                    <p>Análise dos resultados educacionais e literacia</p>
+                </div>
+
+                <div class="charts-grid">
+                    <div class="card chart-card">
+                        <div class="chart-card__header">
+                            <h3>Indicadores Regionais Comparativos</h3>
+                        </div>
+                        <div class="chart-card__body">
+                            <img src="https://pplx-res.cloudinary.com/image/upload/v1748787595/pplx_code_interpreter/33c447a8_f7c8du.jpg" alt="Indicadores regionais" class="chart-image">
+                        </div>
+                    </div>
+                    <div class="card chart-card">
+                        <div class="chart-card__header">
+                            <h3>Semáforo de Literacia por Região</h3>
+                        </div>
+                        <div class="chart-card__body">
+                            <div class="literacy-indicators" id="literacyIndicators">
+                                <!-- Populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Métricas de Impacto -->
+                <div class="impact-metrics">
+                    <div class="card metric-card">
+                        <div class="metric-card__icon">📈</div>
+                        <div class="metric-card__content">
+                            <h3>76.9%</h3>
+                            <p>Alunos com nível 2+ em leitura</p>
+                        </div>
+                    </div>
+                    <div class="card metric-card">
+                        <div class="metric-card__icon">⭐</div>
+                        <div class="metric-card__content">
+                            <h3>86%</h3>
+                            <p>Bibliotecas nível 3+ de avaliação</p>
+                        </div>
+                    </div>
+                    <div class="card metric-card">
+                        <div class="metric-card__icon">📚</div>
+                        <div class="metric-card__content">
+                            <h3>3.1%</h3>
+                            <p>Redução low performers</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção 4: Programas e Iniciativas -->
+            <section id="programas" class="section">
+                <div class="section__header">
+                    <h2>Programas e Iniciativas</h2>
+                    <p>Principais programas de promoção da leitura</p>
+                </div>
+
+                <!-- Programas Principais -->
+                <div class="programs-grid">
+                    <div class="card program-card" data-program="rbe">
+                        <div class="program-card__header">
+                            <h3>Rede de Bibliotecas Escolares (RBE)</h3>
+                            <span class="status status--success">Ativo desde 1996</span>
+                        </div>
+                        <div class="program-card__body">
+                            <p>Integrar bibliotecas escolares no sistema educativo</p>
+                            <div class="program-stats">
+                                <div class="program-stat">
+                                    <strong>2,524</strong> escolas aderentes
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card program-card" data-program="pnl">
+                        <div class="program-card__header">
+                            <h3>Plano Nacional de Leitura 2027</h3>
+                            <span class="status status--success">Ativo desde 2017</span>
+                        </div>
+                        <div class="program-card__body">
+                            <p>Promover competências de leitura e literacia</p>
+                            <div class="program-stats">
+                                <div class="program-stat">
+                                    <strong>1,800</strong> escolas aderentes
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card program-card" data-program="cnl">
+                        <div class="program-card__header">
+                            <h3>Concurso Nacional de Leitura</h3>
+                            <span class="status status--success">Ativo desde 2007</span>
+                        </div>
+                        <div class="program-card__body">
+                            <p>Estimular gosto pela leitura entre jovens</p>
+                            <div class="program-stats">
+                                <div class="program-stat">
+                                    <strong>180,000</strong> participantes anuais
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline de Atividades -->
+                <div class="card">
+                    <div class="card__body">
+                        <h3>Timeline Anual de Atividades</h3>
+                        <div class="timeline" id="activitiesTimeline">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Galeria de Imagens -->
+                <div class="card">
+                    <div class="card__body">
+                        <h3>Galeria de Atividades de Promoção da Leitura</h3>
+                        <div class="gallery">
+                            <div class="gallery-item" data-image="reading-activities">
+                                <img src="https://pplx-res.cloudinary.com/image/upload/v1748787618/pplx_project_search_images/ac3382f56038f0c0094c01c97fc677e962047713.jpg" alt="Jovem a ler na biblioteca escolar" class="gallery-image">
+                                <p class="gallery-caption">Promoção da leitura nas bibliotecas escolares</p>
+                            </div>
+                            <div class="gallery-item" data-image="semana-leitura">
+                                <img src="https://pplx-res.cloudinary.com/image/upload/v1748787619/pplx_project_search_images/097c83d40f0161b89ec6a1b7dc4f7b044cc24ee2.jpg" alt="Cartaz da Semana da Leitura" class="gallery-image">
+                                <p class="gallery-caption">Semana da Leitura - Março 2024</p>
+                            </div>
+                            <div class="gallery-item" data-image="hora-conto">
+                                <img src="https://pplx-res.cloudinary.com/image/upload/v1748787619/pplx_project_search_images/674f23071c9740b0cbf8f39dfd6c3eeb2f7d25e6.jpg" alt="Hora do conto na biblioteca" class="gallery-image">
+                                <p class="gallery-caption">Hora do Conto - Atividade regular</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal__content">
+            <div class="modal__header">
+                <h3 id="modalTitle"></h3>
+                <button class="modal__close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal__body" id="modalBody">
+                <!-- Content populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
